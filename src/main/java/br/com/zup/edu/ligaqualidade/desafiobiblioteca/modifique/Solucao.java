@@ -42,13 +42,16 @@ public class Solucao {
                                                    Set<DadosDevolucao> devolucoes,
                                                    LocalDate dataParaSerConsideradaNaExpiracao) {
 
+
+
         UsuarioRepository usuarioRepository = new UsuarioRepository(usuarios);
         ExemplarRepository exemplarRepository = new ExemplarRepository(exemplares);
+
         EmprestimoConcedidoRepository emprestimoConcedidoRepository = new EmprestimoConcedidoRepository();
 
         RegistrarEmprestimoService registrarEmprestimoService = new RegistrarEmprestimoService(usuarioRepository, exemplarRepository, emprestimoConcedidoRepository);
         if (!emprestimos.isEmpty()) {
-            registrarEmprestimoService.registrar(emprestimos);
+            registrarEmprestimoService.registrar(emprestimos, dataParaSerConsideradaNaExpiracao);
         }
 
         DevolverEmprestimoService devolverEmprestimoService = new DevolverEmprestimoService(emprestimoConcedidoRepository);

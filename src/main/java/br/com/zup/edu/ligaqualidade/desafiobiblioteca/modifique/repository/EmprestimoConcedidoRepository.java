@@ -3,6 +3,7 @@ package br.com.zup.edu.ligaqualidade.desafiobiblioteca.modifique.repository;
 import br.com.zup.edu.ligaqualidade.desafiobiblioteca.EmprestimoConcedido;
 import br.com.zup.edu.ligaqualidade.desafiobiblioteca.pronto.DadosExemplar;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,5 +33,10 @@ public class EmprestimoConcedidoRepository {
         return emprestimosConcedidos.stream().filter(it ->
             !it.getMomentoDevolucao().isPresent() && idsExemplares.contains(it.idExemplar)
         ).map(it -> it.idExemplar).collect(Collectors.toSet());
+    }
+
+    public Set<Integer> getPossuiEmprestimoExpirado(LocalDate dataSolicitacaoEmprestimo){
+        return emprestimosConcedidos.stream().filter( it -> dataSolicitacaoEmprestimo.isAfter(it.dataPrevistaDevolucao))
+                .map(it -> it.idExemplar).collect(Collectors.toSet());
     }
 }
