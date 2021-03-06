@@ -15,8 +15,7 @@ public class ExemplarRepository {
         this.exemplares = exemplares;
     }
 
-    public Set<DadosExemplar> get(int idLivro, TipoExemplar tipoExemplar) {
-
-        return exemplares.stream().filter(it -> it.tipo == tipoExemplar && it.idLivro == idLivro).collect(Collectors.toSet());
+    public Set<Integer> getIds(int idLivro, TipoExemplar tipoExemplar) {
+        return exemplares.stream().filter(it -> it.tipo == tipoExemplar && it.idLivro == idLivro).map(it-> it.idExemplar).collect(Collectors.toSet());
     }
 }
