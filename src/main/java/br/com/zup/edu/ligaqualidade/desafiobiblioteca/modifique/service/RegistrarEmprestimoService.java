@@ -40,10 +40,10 @@ public class RegistrarEmprestimoService {
                 continue;
             }
 
-            DadosExemplar dadosExemplar = exemplarDisponivelService.get(emprestimo.idLivro, emprestimo.tipoExemplar);
+            Integer idExemplar = exemplarDisponivelService.getId(emprestimo.idLivro, emprestimo.tipoExemplar);
 
             EmprestimoConcedido emprestimoConcedido = new EmprestimoConcedido(emprestimo.idPedido, emprestimo.idUsuario,
-                    dadosExemplar.idExemplar,
+                    idExemplar,
                     LocalDate.now().plusDays(emprestimo.tempo));
 
             emprestimoConcedidoRepository.regitrar(emprestimoConcedido);
