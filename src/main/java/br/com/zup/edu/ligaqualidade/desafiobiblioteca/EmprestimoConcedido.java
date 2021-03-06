@@ -9,7 +9,7 @@ import br.com.zup.edu.ligaqualidade.desafiobiblioteca.pronto.DadosUsuario;
 
 public class EmprestimoConcedido {
 
-	// id do emprestimo referenciado no PedidoEmprestimo
+	public final int idEmprestimo;
 	public final int idUsuario;
 	public final int idExemplar;
 	// data em função do tempo de emprestimo
@@ -23,8 +23,9 @@ public class EmprestimoConcedido {
 	 * @param idExemplar id referente ao {@link DadosExemplar}
 	 * @param dataPrevistaDevolucao data prevista para devolução em função do número de dias
 	 */
-	public EmprestimoConcedido(int idUsuario,int idExemplar ,LocalDate dataPrevistaDevolucao) {
+	public EmprestimoConcedido(int idEmprestimo, int idUsuario,int idExemplar ,LocalDate dataPrevistaDevolucao) {
 		super();
+		this.idEmprestimo = idEmprestimo;
 		this.idUsuario = idUsuario;
 		this.idExemplar = idExemplar;
 		this.dataPrevistaDevolucao = dataPrevistaDevolucao;
