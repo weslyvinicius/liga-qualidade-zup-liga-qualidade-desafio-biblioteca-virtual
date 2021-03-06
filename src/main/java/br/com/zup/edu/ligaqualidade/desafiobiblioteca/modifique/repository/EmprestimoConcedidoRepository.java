@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class EmprestimoConcedidoRepository {
 
-    //1 Ponto
     Set<EmprestimoConcedido> emprestimosConcedidos;
 
     public EmprestimoConcedidoRepository() {
@@ -21,20 +20,17 @@ public class EmprestimoConcedidoRepository {
     }
 
     public void devolver(Integer idEmprestimo) {
-        //2 Pontos
         emprestimosConcedidos.stream().filter(it -> it.idEmprestimo == idEmprestimo).findFirst().get().registraDevolucao();
     }
 
     public Set<EmprestimoConcedido> get() {
-        //2 Pontos
-        return emprestimosConcedidos.stream().filter(it-> it.getMomentoDevolucao().isEmpty()).collect(Collectors.toSet());
+        return emprestimosConcedidos;
     }
 
     public Set<Integer> getExemplaresComEmprestivoAtivos(Set<Integer> idsExemplares) {
 
-        //2 Pontos
-        return emprestimosConcedidos.stream().filter(it -> {
-            return !it.getMomentoDevolucao().isPresent() && idsExemplares.contains(it.idExemplar);
-        }).map(it -> it.idExemplar).collect(Collectors.toSet());
+        return emprestimosConcedidos.stream().filter(it ->
+            !it.getMomentoDevolucao().isPresent() && idsExemplares.contains(it.idExemplar)
+        ).map(it -> it.idExemplar).collect(Collectors.toSet());
     }
 }
